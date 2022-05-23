@@ -1,12 +1,20 @@
 import React from "react";
+import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { connect } from "react-redux";
+import * as actions from '../actions';
 
 import Header from "./Header";
 import Landing from "./Landing";
 import Dashboard from "./Dashboard";
 import SurveyNew from "./SurveyNew";
 
-const App = () => {
+const App = ({ fetchUser }) => {
+
+    useEffect(() => {
+        fetchUser();
+    }, []);
+
     return (
         <div className="container">
             <BrowserRouter>
@@ -22,4 +30,4 @@ const App = () => {
     );
 }
 
-export default App;
+export default connect(null, actions)(App);
